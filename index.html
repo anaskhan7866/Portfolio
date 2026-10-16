@@ -1755,6 +1755,7 @@
           <button class="filter-btn active" data-filter="all">All Projects</button>
           <button class="filter-btn" data-filter="agentic">Agentic AI & RAG</button>
           <button class="filter-btn" data-filter="fullstack">Full Stack & Backends</button>
+          <button class="filter-btn" data-filter="analytics">Data Analyst</button>
         </div>
 
         <div class="projects-grid" id="projectsContainer">
@@ -1815,7 +1816,7 @@
           </div>
 
           <!-- Project 2: Autonomous Financial Research Agent -->
-          <div class="project-card" data-category="agentic">
+          <div class="project-card" data-category="agentic analytics">
             <div class="project-card-banner">
               <div class="code-preview-mockup">
                 <div class="code-window-dots">
@@ -1866,7 +1867,7 @@
           </div>
 
           <!-- Project 3: Call Tracker CRM & Analytics -->
-          <div class="project-card" data-category="fullstack">
+          <div class="project-card" data-category="fullstack analytics">
             <div class="project-card-banner">
               <div class="code-preview-mockup">
                 <div class="code-window-dots">
@@ -1968,6 +1969,52 @@
             </div>
           </div>
 
+          <!-- Project 5: Automated Stock Market Analytics -->
+          <div class="project-card" data-category="analytics">
+            <div class="project-card-banner">
+              <div class="code-preview-mockup">
+                <div class="code-window-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <div class="code-line"><span class="code-comment"># Stock Data ETL & Relational Ingestion</span></div>
+                <div class="code-line">df = pd.<span class="code-func">DataFrame</span>(response.<span class="code-func">json</span>()[<span class="code-str">'Time Series (Daily)'</span>]).<span class="code-func">T</span></div>
+                <div class="code-line">df_clean = <span class="code-func">validate_and_compute_metrics</span>(df)</div>
+                <div class="code-line">cursor.<span class="code-func">executemany</span>(INSERT_STOCKS_SQL, df_clean.<span class="code-func">to_records</span>())</div>
+                <div class="code-line">powerbi_client.<span class="code-func">trigger_dashboard_refresh</span>()</div>
+              </div>
+            </div>
+
+            <div class="project-card-body">
+              <div class="project-category">Data Analytics · ETL & Power BI</div>
+              <h3 class="project-card-title">Automated Stock Market Analytics & BI Pipeline</h3>
+              <p class="project-card-desc">
+                An end-to-end automated financial data pipeline built with Python, MySQL, and Power BI. Automatically extracts daily equities via Alpha Vantage API, runs validation and transformation with Pandas, stores relational time-series, and renders interactive market trends, price volatility, and risk metrics across Power BI dashboards with GitHub Actions automation.
+              </p>
+
+              <div class="project-tech-stack">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">Pandas</span>
+                <span class="tech-pill">MySQL</span>
+                <span class="tech-pill">Power BI</span>
+                <span class="tech-pill">Alpha Vantage API</span>
+                <span class="tech-pill">GitHub Actions</span>
+              </div>
+
+              <div class="project-links">
+                <a href="https://github.com/anaskhan7866/Automated-Stock-Market-Analytics" target="_blank" rel="noopener"
+                  class="proj-link primary">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                  <span>Source Code</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -2029,6 +2076,7 @@
               <span class="skill-badge"><span class="skill-badge-dot"></span>MySQL & Relational DBMS</span>
               <span class="skill-badge"><span class="skill-badge-dot"></span>SQL Query Optimization</span>
               <span class="skill-badge"><span class="skill-badge-dot"></span>Pandas & NumPy</span>
+              <span class="skill-badge"><span class="skill-badge-dot"></span>Power BI (DAX & Dashboards)</span>
               <span class="skill-badge"><span class="skill-badge-dot"></span>ETL Pipelines</span>
               <span class="skill-badge"><span class="skill-badge-dot"></span>RESTful API Design</span>
               <span class="skill-badge"><span class="skill-badge-dot"></span>openpyxl & Ingestion</span>
@@ -2307,8 +2355,9 @@
         const filter = btn.getAttribute('data-filter');
 
         projectCards.forEach(card => {
-          const category = card.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
+          const category = card.getAttribute('data-category') || '';
+          const categories = category.split(/\s+/);
+          if (filter === 'all' || categories.includes(filter)) {
             card.style.display = 'flex';
           } else {
             card.style.display = 'none';
