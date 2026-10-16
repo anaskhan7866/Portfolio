@@ -997,67 +997,6 @@
       color: #fff;
     }
 
-    /* Slot Card: User Project Placeholder */
-    .project-slot-card {
-      border: 2px dashed rgba(99, 102, 241, 0.35);
-      background: rgba(99, 102, 241, 0.03);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 30px;
-      border-radius: var(--radius-md);
-      transition: all 0.3s ease;
-      min-height: 380px;
-    }
-
-    .project-slot-card:hover {
-      border-color: var(--accent-sky);
-      background: rgba(56, 189, 248, 0.04);
-      transform: translateY(-4px);
-    }
-
-    .slot-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      background: rgba(99, 102, 241, 0.1);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-sky);
-      font-size: 1.4rem;
-      margin-bottom: 18px;
-    }
-
-    .slot-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--text-main);
-    }
-
-    .slot-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      max-width: 380px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .slot-badge {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 6px 14px;
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: var(--accent-emerald);
-      border-radius: var(--radius-full);
-      font-weight: 600;
-    }
-
     /* ── SKILLS & TOOLKIT ── */
     #skills {
       border-top: 1px solid var(--border);
@@ -2029,19 +1968,6 @@
             </div>
           </div>
 
-          <!-- USER PROJECT SLOT: Ready for links -->
-          <!-- NEW_PROJECT_SLOT_START -->
-          <div class="project-slot-card" data-category="all">
-            <div class="slot-icon">＋</div>
-            <h3 class="slot-title">Adding Your New Projects</h3>
-            <p class="slot-desc">
-              Ready to feature your next build! Send me the GitHub link or live deployment URL and I will configure a
-              dedicated, high-impact project card here.
-            </p>
-            <span class="slot-badge">● Ready for New Project Links</span>
-          </div>
-          <!-- NEW_PROJECT_SLOT_END -->
-
         </div>
       </div>
     </section>
@@ -2371,7 +2297,7 @@
 
     // ── Project Filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('#projectsContainer .project-card, #projectsContainer .project-slot-card');
+    const projectCards = document.querySelectorAll('#projectsContainer .project-card');
 
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -2382,7 +2308,7 @@
 
         projectCards.forEach(card => {
           const category = card.getAttribute('data-category');
-          if (filter === 'all' || category === filter || category === 'all') {
+          if (filter === 'all' || category === filter) {
             card.style.display = 'flex';
           } else {
             card.style.display = 'none';
